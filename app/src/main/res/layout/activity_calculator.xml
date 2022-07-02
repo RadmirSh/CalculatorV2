@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_columnSpan="4"
         android:layout_gravity="fill_horizontal"
+        android:background="@android:drawable/editbox_background"
         android:gravity="end"
         android:textSize="@dimen/textView"
         tools:text="111" />
@@ -26,8 +27,8 @@
         android:layout_columnSpan="2"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/red"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_zeroing" />
+        android:text="@string/key_zeroing"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/division"
@@ -36,8 +37,8 @@
         android:layout_columnSpan="2"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/orange"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_division" />
+        android:text="@string/key_division"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_7"
@@ -45,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_7" />
+        android:text="@string/key_7"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_8"
@@ -54,8 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_8" />
+        android:text="@string/key_8"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_9"
@@ -63,8 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_9" />
+        android:text="@string/key_9"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/composition"
@@ -72,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/orange"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_composition" />
+        android:text="@string/key_composition"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_4"
@@ -81,8 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_4" />
+        android:text="@string/key_4"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_5"
@@ -90,8 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_5" />
+        android:text="@string/key_5"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_6"
@@ -99,8 +100,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_6" />
+        android:text="@string/key_6"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_subtraction"
@@ -108,8 +109,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/orange"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_subtraction" />
+        android:text="@string/key_subtraction"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_1"
@@ -117,8 +118,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_1" />
+        android:text="@string/key_1"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_2"
@@ -126,8 +127,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_2" />
+        android:text="@string/key_2"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_3"
@@ -135,8 +136,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_3" />
+        android:text="@string/key_3"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_addition"
@@ -144,8 +145,8 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/orange"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_addition" />
+        android:text="@string/key_addition"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_0"
@@ -154,8 +155,8 @@
         android:layout_columnSpan="2"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_0" />
+        android:text="@string/key_0"
+        android:textSize="@dimen/textButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dot"
@@ -164,7 +165,7 @@
         android:layout_columnSpan="2"
         android:layout_columnWeight="1"
         android:backgroundTint="@color/grey"
-        android:textSize="@dimen/textButton"
-        android:text="@string/key_dot" />
+        android:text="@string/key_dot"
+        android:textSize="@dimen/textButton" />
 
 </GridLayout>

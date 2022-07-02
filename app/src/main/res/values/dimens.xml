@@ -2,4 +2,8 @@
 <resources>
     <dimen name="textButton">14sp</dimen>
     <dimen name="textView">42sp</dimen>
+    <dimen name="bigBtn">42dp</dimen>
+    <dimen name="smallBtn">30dp</dimen>
+    <dimen name="textButtonLand">20sp</dimen>
+
 </resources>
