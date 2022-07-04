@@ -1,7 +1,13 @@
 package com.example.calculatorv2.ui;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -87,12 +93,28 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         /*digitClickListener для обработки нажатия кнопки "." и передачи presenter'у*/
         findViewById(R.id.dot).setOnClickListener(view -> presenter.onDotPressed());
 
+        ActivityResultLauncher<Intent> themeLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+
+                    Theme selectedTheme = (Theme) intent.getSerializableExtra(SelectThemeActivity.EXTRA_THEME);
+
+                    themeRepository.saveTheme(selectedTheme);
+
+                    recreate();
+                }
+            }
+        });
+
         findViewById(R.id.theme).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculatorActivity.this, SelectThemeActivity.class);
                 intent.putExtra(SelectThemeActivity.EXTRA_THEME, themeRepository.getSavedTheme());
-                startActivity(intent);
+
+                themeLauncher.launch(intent);
             }
         });
     }
