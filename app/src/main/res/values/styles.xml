@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CalcButtonLand" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:backgroundTint">@color/grey</item>
+        <item name="android:textSize">@dimen/textButtonLand</item>
+        <item name="cornerRadius">@dimen/smallBtn</item>
+        <item name="android:layout_columnWeight">1</item>
+    </style>
+    <style name="CalcBigButtonLand" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:backgroundTint">@color/grey</item>
+        <item name="android:textSize">@dimen/textButtonLand</item>
+        <item name="cornerRadius">@dimen/bigBtn</item>
+        <item name="android:layout_columnSpan">2</item>
+        <item name="android:layout_columnWeight">1</item>
+    </style>
+    <style name="CalcButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:backgroundTint">@color/grey</item>
+        <item name="android:textSize">@dimen/textButtonLand</item>
+        <item name="cornerRadius">@dimen/smallBtn</item>
+        <item name="android:layout_columnWeight">1</item>
+    </style>
+
+</resources>

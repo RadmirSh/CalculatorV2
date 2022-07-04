@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.calculatorv2.R;
 import com.example.calculatorv2.model.CalculatorImpl;
 import com.example.calculatorv2.model.Operator;
+import com.example.calculatorv2.model.Theme;
+import com.example.calculatorv2.model.ThemeRepository;
+import com.example.calculatorv2.model.ThemeRepositoryImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,9 +24,15 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
 
     private CalculatorPresenter presenter;
 
+    private ThemeRepository themeRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        themeRepository = ThemeRepositoryImpl.getInstance(this);
+        setTheme(themeRepository.getSavedTheme().getThemeRes());
+
         setContentView(R.layout.activity_calculator);
 
         resultTxt = findViewById(R.id.result);
@@ -76,8 +86,38 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         /*digitClickListener для обработки нажатия кнопки "." и передачи presenter'у*/
         findViewById(R.id.dot).setOnClickListener(view -> presenter.onDotPressed());
 
-    }
+        Button themeDefault = findViewById(R.id.theme1);
+        Button themeWhite = findViewById(R.id.theme2);
+        Button themeBlack = findViewById(R.id.theme3);
 
+        if (themeDefault != null) {
+            themeDefault.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    themeRepository.saveTheme(Theme.DEFAULT);
+                    recreate();
+                }
+            });
+        }
+        if (themeWhite != null) {
+            themeWhite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    themeRepository.saveTheme(Theme.WHITE);
+                    recreate();
+                }
+            });
+        }
+        if (themeBlack != null) {
+            themeBlack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    themeRepository.saveTheme(Theme.BLACK);
+                    recreate();
+                }
+            });
+        }
+    }
     @Override
     public void showResult(String result) {
         resultTxt.setText(result);
