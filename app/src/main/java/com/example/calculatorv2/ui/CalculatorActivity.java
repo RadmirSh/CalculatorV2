@@ -2,6 +2,7 @@ package com.example.calculatorv2.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -86,38 +87,16 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         /*digitClickListener для обработки нажатия кнопки "." и передачи presenter'у*/
         findViewById(R.id.dot).setOnClickListener(view -> presenter.onDotPressed());
 
-        Button themeDefault = findViewById(R.id.theme1);
-        Button themeWhite = findViewById(R.id.theme2);
-        Button themeBlack = findViewById(R.id.theme3);
-
-        if (themeDefault != null) {
-            themeDefault.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    themeRepository.saveTheme(Theme.DEFAULT);
-                    recreate();
-                }
-            });
-        }
-        if (themeWhite != null) {
-            themeWhite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    themeRepository.saveTheme(Theme.WHITE);
-                    recreate();
-                }
-            });
-        }
-        if (themeBlack != null) {
-            themeBlack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    themeRepository.saveTheme(Theme.BLACK);
-                    recreate();
-                }
-            });
-        }
+        findViewById(R.id.theme).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CalculatorActivity.this, SelectThemeActivity.class);
+                intent.putExtra(SelectThemeActivity.EXTRA_THEME, themeRepository.getSavedTheme());
+                startActivity(intent);
+            }
+        });
     }
+
     @Override
     public void showResult(String result) {
         resultTxt.setText(result);

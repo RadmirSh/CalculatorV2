@@ -178,21 +178,10 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/theme1"
+        android:id="@+id/theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/theme_1" />
+        android:text="@string/select_theme"/>
 
-    <Button
-        android:id="@+id/theme2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/theme_2" />
-
-    <Button
-        android:id="@+id/theme3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/theme_3" />
 
 </LinearLayout>

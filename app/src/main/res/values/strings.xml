@@ -22,4 +22,5 @@
     <string name="theme_1">Theme 1</string>
     <string name="theme_2">Theme 2</string>
     <string name="theme_3">Theme 3</string>
+    <string name="select_theme">Select Theme</string>
 </resources>
