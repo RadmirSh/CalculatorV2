@@ -5,13 +5,18 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.calculatorv2.R;
@@ -43,8 +48,8 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         setContentView(R.layout.activity_calculator);
 
         resultTxt = findViewById(R.id.result);
-
         presenter = new CalculatorPresenter(this, new CalculatorImpl());
+
 
         /*MAP чтобы вытащить значения*/
         Map<Integer, Integer> digits = new HashMap<>();
@@ -80,6 +85,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.key_subtraction, Operator.SUB);
         operators.put(R.id.composition, Operator.COMP);
         operators.put(R.id.division, Operator.DIV);
+        operators.put(R.id.equal, Operator.EQUAL);
 
         /*digitClickListener для обработки нажатия кнопок и передачи presenter'у*/
         View.OnClickListener operatorsOnClickListener = view -> presenter.onOperatorPressed(operators.get(view.getId()));
@@ -117,6 +123,20 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 themeLauncher.launch(intent);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable("lastResult", presenter.getLastResult());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        presenter.setLastResult((double) savedInstanceState.getSerializable("lastResult"));
+        showResult(String.valueOf(presenter.getLastResult()));
+        Log.d("calcCreate", "reCreate");
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override

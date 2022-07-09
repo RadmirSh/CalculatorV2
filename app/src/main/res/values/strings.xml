@@ -5,7 +5,6 @@
     <string name="key_3">3</string>
     <string name="key_4">4</string>
     <string name="key_0">0</string>
-    <string name="key_equal">=</string>
     <string name="key_dot">.</string>
     <string name="key_addition">+</string>
     <string name="key_subtraction">-</string>
@@ -18,7 +17,7 @@
     <string name="key_division">/</string>
     <string name="key_whole">+/-</string>
     <string name="key_percent">%</string>
-    <string name="key_zeroing">c/ce</string>
+    <string name="key_equal">=</string>
     <string name="theme_1">Theme 1</string>
     <string name="theme_2">Theme 2</string>
     <string name="theme_3">Theme 3</string>
