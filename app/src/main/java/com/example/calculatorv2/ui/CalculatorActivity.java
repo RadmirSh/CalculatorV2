@@ -1,10 +1,22 @@
 package com.example.calculatorv2.ui;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.calculatorv2.R;
@@ -36,8 +48,8 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         setContentView(R.layout.activity_calculator);
 
         resultTxt = findViewById(R.id.result);
-
         presenter = new CalculatorPresenter(this, new CalculatorImpl());
+
 
         /*MAP чтобы вытащить значения*/
         Map<Integer, Integer> digits = new HashMap<>();
@@ -73,6 +85,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.key_subtraction, Operator.SUB);
         operators.put(R.id.composition, Operator.COMP);
         operators.put(R.id.division, Operator.DIV);
+        operators.put(R.id.equal, Operator.EQUAL);
 
         /*digitClickListener для обработки нажатия кнопок и передачи presenter'у*/
         View.OnClickListener operatorsOnClickListener = view -> presenter.onOperatorPressed(operators.get(view.getId()));
@@ -86,38 +99,46 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         /*digitClickListener для обработки нажатия кнопки "." и передачи presenter'у*/
         findViewById(R.id.dot).setOnClickListener(view -> presenter.onDotPressed());
 
-        Button themeDefault = findViewById(R.id.theme1);
-        Button themeWhite = findViewById(R.id.theme2);
-        Button themeBlack = findViewById(R.id.theme3);
+        ActivityResultLauncher<Intent> themeLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
 
-        if (themeDefault != null) {
-            themeDefault.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    themeRepository.saveTheme(Theme.DEFAULT);
+                    Theme selectedTheme = (Theme) intent.getSerializableExtra(SelectThemeActivity.EXTRA_THEME);
+
+                    themeRepository.saveTheme(selectedTheme);
+
                     recreate();
                 }
-            });
-        }
-        if (themeWhite != null) {
-            themeWhite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    themeRepository.saveTheme(Theme.WHITE);
-                    recreate();
-                }
-            });
-        }
-        if (themeBlack != null) {
-            themeBlack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    themeRepository.saveTheme(Theme.BLACK);
-                    recreate();
-                }
-            });
-        }
+            }
+        });
+
+        findViewById(R.id.theme).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CalculatorActivity.this, SelectThemeActivity.class);
+                intent.putExtra(SelectThemeActivity.EXTRA_THEME, themeRepository.getSavedTheme());
+
+                themeLauncher.launch(intent);
+            }
+        });
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable("lastResult", presenter.getLastResult());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        presenter.setLastResult((double) savedInstanceState.getSerializable("lastResult"));
+        showResult(String.valueOf(presenter.getLastResult()));
+        Log.d("calcCreate", "reCreate");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     @Override
     public void showResult(String result) {
         resultTxt.setText(result);
